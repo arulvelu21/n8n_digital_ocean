@@ -29,6 +29,7 @@
       flex-direction: column;
       overflow: hidden;
       border: 1px solid #ece6ff;
+      transition: all 0.3s ease-in-out; /* Added for smoother transitions */
     }
     .chat-header {
       background: linear-gradient(90deg, #8f6fff 60%, #c3a7ff 100%);
@@ -43,6 +44,7 @@
       align-items: center;
       justify-content: space-between;
       height: 56px;
+      flex-shrink: 0; /* Prevents header from shrinking */
     }
     .chat-header-title {
       padding-left: 28px;
@@ -73,17 +75,14 @@
       background: rgba(255,255,255,0.12);
     }
     .chat-history {
-  flex: 1;
-  min-height: 420px;
-  max-height: 470px;
-  overflow-y: auto;
-  padding: 12px 12px 6px 12px;
-  background: #faf8ff;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  box-sizing: border-box;
-  margin-bottom: 4px;
+      flex: 1; /* This makes the history fill available space */
+      overflow-y: auto;
+      padding: 12px 12px 6px 12px;
+      background: #faf8ff;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-sizing: border-box;
     }
     .msg { margin-bottom: 0px; }
     .msg-user { 
@@ -136,6 +135,7 @@
       border-top: 1px solid #ece6ff;
       margin-top: 0;
       box-sizing: border-box;
+      flex-shrink: 0; /* Prevents input from shrinking */
     }
     .chat-input input {
       flex: 1;
@@ -154,7 +154,8 @@
       background: #8f6fff;
       color: #fff;
       border: none;
-      padding: 0 20px;
+      padding: 10px 20px; /* Adjusted padding for consistent height */
+      height: 44px; /* Set a fixed height */
       cursor: pointer;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
@@ -229,12 +230,40 @@
       cursor: pointer;
       font-size: 0.85rem;
     }
-    @media (max-width: 500px) {
-      .chat-container { max-width: 100%; width: 100%; height: 100%; border-radius: 0; }
-      .chat-header { border-radius: 0; }
-      .chat-history { min-height: 160px; max-height: 200px; padding: 10px; }
-      .chat-input { padding: 10px; border-radius: 0; }
-      .chatbot-icon { width: 44px; height: 44px; font-size: 22px; bottom: 12px; right: 12px; }
+
+    /* ======================================== */
+    /* ==   NEW RESPONSIVE STYLES FOR MOBILE   == */
+    /* ======================================== */
+    @media (max-width: 768px) {
+      .chat-container {
+        /* Make the chat window cover the entire screen */
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        
+        /* Remove spacing and rounded corners for a full-screen look */
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      
+      /* Remove rounded corners from the header and input on mobile */
+      .chat-header,
+      .chat-input {
+        border-radius: 0;
+      }
+      
+      /* Slightly adjust the floating icon for smaller screens */
+      .chatbot-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+      }
     }
   </style>
 </head>
@@ -427,7 +456,7 @@
       while(banners.length) banners[0].remove();
     };
     chatbotIcon.onclick = function() {
-      chatContainer.style.display = '';
+      chatContainer.style.display = 'flex'; /* Changed from '' to 'flex' for consistency */
       chatbotIcon.style.display = 'none';
     };
   </script>
