@@ -126,16 +126,18 @@
       border: 1.2px solid #e3d4ff;
     }
     .chat-input {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 18px 19px 18px 19px;
-      background: #fff;
-      border-bottom-left-radius: 24px;
-      border-bottom-right-radius: 24px;
-      border-top: 1px solid #ece6ff;
-      margin-top: 0;
-      box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 18px 19px 18px 19px;
+  background: #fff;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  border-top: 1px solid #ece6ff;
+  margin-top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  flex-shrink: 0;
     }
     .chat-input input {
       flex: 1;
@@ -168,21 +170,25 @@
       gap: 8px;
     }
     .chat-input button[type="submit"]:hover {
-      background: #a48bfe;
-    }
-    .error-banner {
-      color: #fff;
-      background: #e74c3c;
-      padding: 13px 20px;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      font-size: 1.02rem;
-      text-align: center;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 8px #efacbe;
-    }
-    .chatbot-icon {
+  background: #8f6fff;
+  color: #fff;
+  border: none;
+  padding: 0 12px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  border-radius: 11px;
+  box-shadow: 0 2px 8px rgba(143,111,255,0.12);
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  max-width: 90px;
+  min-width: 60px;
+  height: 38px;
       display: none;
       position: fixed;
       bottom: 32px;
@@ -262,6 +268,7 @@
       .chat-input {
         padding: 7px;
         border-radius: 0;
+        width: 100vw;
       }
       .chat-input input {
         font-size: 0.78rem;
@@ -270,6 +277,9 @@
       .chat-input button[type="submit"] {
         font-size: 0.78rem;
         padding: 0 8px;
+        max-width: 80px;
+        min-width: 50px;
+        height: 34px;
       }
       #typingIndicator {
         font-size: 0.78rem !important;
