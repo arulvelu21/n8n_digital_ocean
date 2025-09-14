@@ -280,7 +280,16 @@
         });
         if (res.ok) {
           let data = await res.json();
-          appendMessage(data.reply || "Sorry, I didn't get that.", 'bot');
+          // Handle array or object response
+          let botReply = '';
+          if (Array.isArray(data) && data.length && data[0].output) {
+            botReply = data[0].output;
+          } else if (data.output) {
+            botReply = data.output;
+          } else if (data.reply) {
+            botReply = data.reply;
+          }
+          appendMessage(botReply || "Sorry, I didn't get that.", 'bot');
         } else {
           showError('Sorry, connection failed. Please try again.');
         }
